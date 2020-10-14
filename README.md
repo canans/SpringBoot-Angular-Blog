@@ -3,3 +3,4 @@
  -Angular
  -Bootstrap
  -PostgreSql
+  http://localhost:4200/
