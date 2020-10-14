@@ -1,0 +1,47 @@
+<div class="col-sm-12">
+    <p class="h3">{{post.title}}</p>
+</div>
+<div class="col-sm-12">
+  <hr>
+  <span style="font-size: 15px;;float: left">
+    <p>Author {{post.username}}</p>
+  </span>
+  <span style="font-size: 15px;;float: right">
+    <p>by {{post.createdOn.substring(0,10)}}</p>
+  </span>
+</div>
+
+<div class="col-sm-12">
+    <br>
+  <br>
+  <p [innerHTML]="post.content"></p>
+  <hr>
+  <p class="blog-header-logo text-dark">Comments</p>
+ 
+    <div >
+      <ul class="list-group">
+        <li class="list-group-item  justify-content-between lh-condensed" *ngFor="let comment of comments"  >
+          <div>
+            <h6 class="my-0">{{comment.comment}}</h6>
+            <small class="text-muted">by {{username}}</small>
+          </div>
+        
+        </li>
+        
+      </ul>
+    
+  <a *ngIf='controlAuth==false' class="btn btn-warning " href="/login" >
+    Login to post a comment</a>
+<hr>
+  <div  *ngIf='authService.isAuthenticated()'>
+    <form [formGroup]="CommentForm" (ngSubmit)="onSubmit()">
+       <div class="form-group">
+       
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" formControlName="comment" placeholder=" Post a comment"></textarea>
+    <button type="submit" class="btn btn-primary" (click)="createComment()">Submit</button>
+   
+  </div>
+</form>
+</div>
+</div>
+<app-footer></app-footer>
